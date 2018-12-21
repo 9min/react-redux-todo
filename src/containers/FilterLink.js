@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as setVisibilityFilter from '../store/modules/visibilityFilter';
+import * as visibilityFilterActions from '../store/modules/visibilityFilter';
 import Link from '../components/Link';
 
 const mapStateToProps = (state, props) => ({
@@ -8,7 +8,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setVisibilityFilter: bindActionCreators(setVisibilityFilter, dispatch).setVisibilityFilter,
+  VisibilityFilterActions: bindActionCreators(visibilityFilterActions, dispatch),
 });
 
 export default connect(

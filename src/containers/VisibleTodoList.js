@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TodoList from '../components/TodoList';
 import { VisibilityFilters } from '../store/modules/visibilityFilter';
-import * as toggleTodo from '../store/modules/todos';
+import * as todoActions from '../store/modules/todos';
 
 const getVisibleTodos = (todos, filter) => {
   const { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } = VisibilityFilters;
@@ -24,7 +24,7 @@ const mapStateToProps = ({ todos, visibilityFilter }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleTodo: bindActionCreators(toggleTodo, dispatch).toggleTodo,
+  TodoActions: bindActionCreators(todoActions, dispatch),
 });
 
 export default connect(

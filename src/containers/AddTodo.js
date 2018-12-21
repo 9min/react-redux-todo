@@ -1,10 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as addTodo from '../store/modules/todos';
+import * as todoActions from '../store/modules/todos';
 
 const AddTodo = (props) => {
-  const { addTodo } = props;
+  const { TodoActions } = props;
   let input = null;
 
   return (
@@ -15,7 +15,7 @@ const AddTodo = (props) => {
           if (!input.value.trim()) {
             return;
           }
-          addTodo(input.value);
+          TodoActions.addTodoAsync(input.value);
           input.value = '';
         }}
       >
@@ -29,6 +29,6 @@ const AddTodo = (props) => {
 export default connect(
   (state) => ({}),
   (dispatch) => ({
-    addTodo: bindActionCreators(addTodo, dispatch).addTodo,
+    TodoActions: bindActionCreators(todoActions, dispatch),
   })
 )(AddTodo);

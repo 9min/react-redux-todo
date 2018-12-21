@@ -1,20 +1,22 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions';
+import * as addTodo from '../store/modules/todos';
 
-const AddTodo = ({ dispatch }) => {
+const AddTodo = (props) => {
+  const { addTodo } = props;
   let input = null;
 
   return (
     <div>
       <form
         onSubmit={e => {
-          e.preventDefault()
+          e.preventDefault();
           if (!input.value.trim()) {
-            return
+            return;
           }
-          dispatch(addTodo(input.value))
-          input.value = ''
+          addTodo(input.value);
+          input.value = '';
         }}
       >
         <input ref={node => (input = node)} />
@@ -24,4 +26,9 @@ const AddTodo = ({ dispatch }) => {
   );
 };
 
-export default connect()(AddTodo);
+export default connect(
+  (state) => ({}),
+  (dispatch) => ({
+    addTodo: bindActionCreators(addTodo, dispatch).addTodo,
+  })
+)(AddTodo);

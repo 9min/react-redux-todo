@@ -1,6 +1,6 @@
 import React from 'react';
 import FilterLink from '../containers/FilterLink';
-import { VisibilityFilters } from '../actions';
+import { VisibilityFilters } from '../store/modules/visibilityFilter';
 
 const Footer = () => {
   const { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } = VisibilityFilters;

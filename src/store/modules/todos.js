@@ -12,8 +12,7 @@ export const addTodo = createAction(ADD_TODO);
 export const toggleTodo = createAction(TOGGLE_TODO);
 
 export const addTodoAsync = (text) => (dispatch) => {
-  console.log(`1초 후에 "${text}" 메시지가 등록됩니다.`);
-  setTimeout(() => dispatch(addTodo(text)), 1000);
+  dispatch(addTodo(text));
 };
 
 // initial state

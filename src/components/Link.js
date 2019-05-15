@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { setVisibilityFilter } from '../store/modules/visibilityFilter';
 
-const Link = ({ active, filter, children, VisibilityFilterActions }) => (
-  <button
-    onClick={() => VisibilityFilterActions.setVisibilityFilter(filter)}
-    disabled={active}
-    style={{
-      marginLeft: '4px',
-      color: active ? '#dddddd' : '#000000',
-    }}
-  >
-    {children}
-  </button>
-);
+const Link = React.memo(({ filter, children }) => {
+  const { visibilityFilter } = useSelector(state => state, []);
+  const dispatch = useDispatch();
+  const [active, setActive] = useState(false);
+  const onClick = useCallback(() => dispatch(setVisibilityFilter(filter)), []);
+
+  useEffect(() => {
+    setActive(filter === visibilityFilter);
+  }, [visibilityFilter]);
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={active}
+    >
+      {children}
+    </button>
+  );
+});
 
 Link.propTypes = {
-  active: PropTypes.bool.isRequired,
+  filter: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  VisibilityFilterActions: PropTypes.shape({
-    setVisibilityFilter: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 export default Link;

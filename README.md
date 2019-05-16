@@ -12,4 +12,11 @@
 - redux-thunk
 - immer
 
+**devDependencies**
+
+- eslint
+- eslint-config-airbnb
+- eslint-plugin-react
+- eslint-plugin-react-hooks
+
 **[Project View](https://murmuring-forest-26002.herokuapp.com)**

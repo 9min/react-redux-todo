@@ -16,7 +16,5 @@ export const setVisibilityFilter = createAction(SET_VISIBILITY_FILTER);
 const initialState = VisibilityFilters.SHOW_ALL;
 
 export default handleActions({
-  [SET_VISIBILITY_FILTER]: (state, action) => {
-    return action.payload;
-  },
+  [SET_VISIBILITY_FILTER]: (state, action) => action.payload,
 }, initialState);

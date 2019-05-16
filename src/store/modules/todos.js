@@ -11,36 +11,36 @@ const TOGGLE_TODO = 'todo/TOGGLE_TODO';
 export const addTodo = createAction(ADD_TODO);
 export const toggleTodo = createAction(TOGGLE_TODO);
 
-export const addTodoAsync = (text) => (dispatch) => {
-  dispatch(addTodo(text));
-};
+export const addTodoAsync = text => dispatch => dispatch(addTodo(text));
 
 // initial state
-let initialState = [
+const initialState = [
   {
     id: nextTodoId,
     text: 'First Todo',
     completed: false,
-  }
+  },
 ];
 
 export default handleActions({
-  [ADD_TODO]: (state, action) => {
-    return produce(state, (draft) => {
+  [ADD_TODO]: (state, action) => (
+    produce(state, (draft) => {
       draft.push({
-        id: ++nextTodoId,
+        id: nextTodoId += 1,
         text: action.payload,
         completed: false,
       });
-    });
-  },
-  [TOGGLE_TODO]: (state, action) => {
-    return produce(state, (draft) => {
+    })
+  ),
+  [TOGGLE_TODO]: (state, action) => (
+    produce(state, (draft) => {
       draft.forEach((todo) => {
-        if (todo.id === action.payload) {
-          todo.completed = !todo.completed;
+        const newTodo = todo;
+
+        if (newTodo.id === action.payload) {
+          newTodo.completed = !newTodo.completed;
         }
       });
-    });
-  },
+    })
+  ),
 }, initialState);

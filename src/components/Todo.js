@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 const Todo = React.memo(({ onClick, completed, text }) => (
   <li
     onClick={onClick}
+    onKeyDown={onClick}
     style={{ textDecoration: completed ? 'line-through' : 'none' }}
+    role="presentation"
   >
     {text}
   </li>

@@ -15,7 +15,7 @@ const getVisibleTodos = (todos, visibilityFilter) => {
     case SHOW_ACTIVE:
       return todos.filter(t => !t.completed);
     default:
-      throw new Error('Unknown filter: ' + visibilityFilter);
+      throw new Error(`Unknown filter: ${visibilityFilter}`);
   }
 };
 
@@ -23,7 +23,7 @@ const TodoList = () => {
   const { todos, visibilityFilter } = useSelector(state => state, []);
   const dispatch = useDispatch();
   const [visibleTodos, setVisibleTodos] = useState([]);
-  const onClick = useCallback(id => dispatch(toggleTodo(id)), []);
+  const onClick = useCallback(id => dispatch(toggleTodo(id)), [dispatch]);
 
   useEffect(() => {
     setVisibleTodos(getVisibleTodos(todos, visibilityFilter));
@@ -32,7 +32,7 @@ const TodoList = () => {
   return (
     <ul>
       {
-        visibleTodos.map((todo) => (
+        visibleTodos.map(todo => (
           <Todo
             key={todo.id}
             onClick={() => onClick(todo.id)}
